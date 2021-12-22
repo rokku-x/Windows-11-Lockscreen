@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Windows 11 LockScreen</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+    @font-face {
+      font-family: 'Font';
+      src: url('./static/font.ttf') format('truetype');
+      font-weight: normal;
+    }
+
+    body,
+    html {
+      margin: 50px;
+      padding: 0;
+      font-family: 'Font', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+    }
+
+    
+    .main {
+      width: 1920px;
+      height: 1080px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      display: none;
+    }
+
+    .bg {
+      margin-top: -100px;
+      margin-left: 100px;
+      zoom: 2.2;
+    }
+
+    .timediv {
+      position: absolute;
+      top: 150px;
+      z-index: 2;
+      text-align: center;
+      color: white;
+    }
+
+    .time {
+      font-size: 140px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+    }
+
+    .colon {
+      margin-top: -15px;
+    }
+
+    .date {
+      font-size: 28px;
+      font-weight: 500;
+    }
+  </style>
+  <script>
+    const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const update = () => {
+      const date = `${week[new Date().getDay()]}, ${month[new Date().getMonth()]} ${new Date().getDate()}`
+      document.getElementById("hr").innerHTML = new Date().getHours()
+      document.getElementById("min").innerHTML = new Date().getMinutes().toString().padStart(2,'0')
+      document.getElementById("date").innerHTML = date
+      document.getElementById("main").style.display = "flex"
+    }
+    window.onload = update;
+    setInterval(update, 1000)
+  </script>
+</head>
+
+<body>
+  <div id="main" class="main">
+    <img class="bg" src="./static/img0.jpg">
+    <div class="timediv">
+      <div id="time" class="time">
+        <span id="hr"></span>
+        <div class="colon"><span>:</span></div><span id="min"></span>
+      </div>
+      <div id="date" class="date">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
